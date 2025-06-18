@@ -10,8 +10,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-brown font-sans">
-{{$slot}}
+<body class="bg-brown text-white font-sans">
+<div class="px-10">
+    <nav class="flex justify-between items-center py-4 border-b border-white/10">
+        <div>
+            <a href="/">
+{{--                <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">--}}
+                <p>LOGO TU</p>
+            </a>
+        </div>
+        <div class="space-x-6 font-bold">
+            <a href="#">Moje Rezerwacje</a>
+            <a href="#">Wszystkie filmy</a>
+            <a href="#">FAQ</a>
+            <a href="#">Nasze kina</a>
+        </div>
+        <div class="space-x-6 font-bold">
+            @guest
+            <a href="/login">Zaloguj</a>
+            <a href="/register">Zarejestruj</a>
+            @endguest
+            @auth
+            <a href="/login">Wyloguj</a>
+                @endauth
+        </div>
+
+    </nav>
+    <main class="mt-10 max-w-[986px] mx-auto">
+        {{$slot}}
+    </main>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
