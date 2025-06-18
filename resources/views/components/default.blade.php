@@ -31,7 +31,11 @@
             <a href="/register">Zarejestruj</a>
             @endguest
             @auth
-            <a href="/login">Wyloguj</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="text-white">Wyloguj</button>
+                    </form>
+
                 @endauth
         </div>
 
