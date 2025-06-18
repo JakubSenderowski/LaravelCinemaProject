@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+
 use App\Models\Film;
 use App\Models\User;
 
@@ -19,4 +21,8 @@ Route::get("/register", [AuthController::class, "register"])->name("register");
 Route::post("/register", [AuthController::class, "registerPost"])->name('register.post');
 
 Route::post('/logout', [AuthController::class, "logout"])->name("logout");
+
+
+
+Route::get('/dashboard', [AdminController::class, "adminDashboard"])->name("dashboard");
 
