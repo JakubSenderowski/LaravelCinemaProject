@@ -3,10 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Models\Film;
+use App\Models\User;
 
 Route::get('/', function () {
     $filmy = Film::hotMovies();
-    return view('welcome', compact('filmy'));
+    $filmyWszystkie = Film::allMovies();
+    $filmyPrzeliczone = Film::moviesCount();
+    return view('welcome', compact('filmy', 'filmyWszystkie', 'filmyPrzeliczone'));
 });
 
 Route::get("/login", [AuthController::class, "login"])->name("login");

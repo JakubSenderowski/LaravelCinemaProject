@@ -15,8 +15,17 @@
     <nav class="flex justify-between items-center py-4 border-b border-white/10">
         <div>
             <a href="/">
-{{--                <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">--}}
-                <p>LOGO TU</p>
+                @auth
+                    @if(Auth::user()->is_admin)
+                        <p class="text-white text-sm">
+                            Witaj, {{ Auth::user()->name }} 👋 <span class="text-red-500 font-semibold">Administrator</span>
+                        </p>
+                    @else
+                        <p class="text-white text-sm">
+                            Witaj, {{ Auth::user()->name }} 👋
+                        </p>
+                    @endif
+                @endauth
             </a>
         </div>
         <div class="space-x-6 font-bold">

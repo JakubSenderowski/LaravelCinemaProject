@@ -18,5 +18,10 @@ class Film extends Model
             ->take($limit)
             ->get();
     }
-
+    public static function allMovies(){
+        return self::with('kategoria')->where('is_active', true)->get();
+    }
+    public static function moviesCount(){
+        return self::count();
+    }
 }

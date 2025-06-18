@@ -6,9 +6,7 @@
                 <x-input> </x-input>
             </x-form>
         </section>
-
         <x-section-heading>Top 3 - Najlepsze filmy tego miesiąca 🔥.</x-section-heading>
-
         <div class="mt-10 px-6 grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
             @foreach($filmy as $film)
                 <x-movie-poster
@@ -20,10 +18,35 @@
             @endforeach
         </div>
     </div>
-
     <x-section-heading>Nasze filmy</x-section-heading>
-    <p>TUTAJ WSZYSTKIE FILMY PO LOOPIE ZROBIĆ</p>
+    <div class="mt-10 px-6 grid grid-cols-1 md:grid-cols-4 gap-6 place-items-center">
+    @foreach($filmyWszystkie as $filmy)
+        <x-movie-poster
+            :src="'/storage/posters/' . $filmy->poster"
+            :tytul="$filmy->tytul"
+            :kategoria="$filmy->kategoria->nazwa"
+            :czastrwania="$filmy->czas_trwania . ' min'"
+        />
+    @endforeach
+    </div>
+    <x-section-heading>Hej! zerknij na nasze statystyki ☺️</x-section-heading>
+    <div class="flex flex-col md:flex-row justify-center gap-10 text-center text-white text-xl font-bold">
+        <div class="text-left ml-0">
+            <p class="text-white/60 text-base mb-2">🎬 Filmów w bazie:</p>
+            <span class="animate-bounce-in text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+        {{$filmyPrzeliczone}}
+            </span>
+        </div>
+        <div class="text-left ml-0">
+            <p class="text-white/60 text-base mb-2">🧙 Zarejestrowanych użytkowników:</p>
+            <span class="animate-bounce-in text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+                {{$filmyPrzeliczone}}
+            </span>
+        </div>
 
-    <x-section-heading>Hej! zerknij na nasze statystyki ☺️. Tutaj animacja Count UP.</x-section-heading>
-    <p>Z bazy liczba filmów, liczba użytkowników i liczba rezerwacji</p>
+
+
+    </div>
+
 </x-default>
+
