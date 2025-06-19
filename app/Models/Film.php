@@ -11,13 +11,12 @@ class Film extends Model
     {
         return $this->belongsTo(Kategoria::class);
     }
-    public static function hotMovies($limit = 3)
+    public function seanse()
     {
-        return self::with('kategoria')
-            ->where('is_hot', true)
-            ->take($limit)
-            ->get();
+        return $this->hasMany(Seanse::class);
     }
+
+
     public static function allMovies(){
         return self::with('kategoria')->where('is_active', true)->get();
     }

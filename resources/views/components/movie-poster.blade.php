@@ -8,3 +8,4 @@
         <p class="text-xs text-white/60">{{ $czastrwania }}</p>
     </div>
 </div>
+
