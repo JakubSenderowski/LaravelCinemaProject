@@ -10,7 +10,9 @@ use App\Models\User;
 
 Route::get('/', [FilmController::class, 'index']);
 
-Route::get('/rezerwacja', [RezerwacjeController::class, 'create']);
+Route::get('/rezerwacja', [RezerwacjeController::class, 'show']);
+Route::get('/rezerwacja/{id}', [RezerwacjeController::class, 'create'])->name('rezerwacja.create');
+Route::post('/rezerwacja', [RezerwacjeController::class, 'store'])->name('rezerwacja.store');
 
 Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name('login.post');
