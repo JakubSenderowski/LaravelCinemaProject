@@ -13,7 +13,7 @@
             <div class="bg-white/10 rounded-xl shadow-md p-6 flex flex-col items-center text-white hover:scale-105 transition w-full max-w-xs">
                 <img src="/storage/icons/seanse-dashboard.png" alt="Seanse" class="w-34 h-34 object-contain mb-4">
                 <h2 class="text-lg font-semibold mb-2">Rezerwacje</h2>
-                <a href="#" class="btn btn-primary">Zarządzaj</a>
+                <a href="/rezerwacje-zarzadzanie" class="btn btn-primary">Zarządzaj</a>
             </div>
 
 
