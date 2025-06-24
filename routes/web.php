@@ -13,6 +13,9 @@ Route::get('/', [FilmController::class, 'index']);
 Route::get('/rezerwacja', [RezerwacjeController::class, 'show']);
 Route::get('/rezerwacja/{id}', [RezerwacjeController::class, 'create'])->name('rezerwacja.create');
 Route::post('/rezerwacja', [RezerwacjeController::class, 'store'])->name('rezerwacja.store');
+Route::get('/rezerwacja-dokonana', [RezerwacjeController::class, 'showRezerwacje'])->name('rezerwacja.showRezerwacje');
+Route::get('/rezerwacja-dokonana-edycja/{id}', [RezerwacjeController::class, 'editView'])->name('rezerwacja.editView');
+
 
 Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name('login.post');

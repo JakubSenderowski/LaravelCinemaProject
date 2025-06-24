@@ -29,7 +29,7 @@
             </a>
         </div>
         <div class="space-x-6 font-bold">
-            <a href="#">Moje Rezerwacje</a>
+            <a href="/rezerwacja-dokonana">Moje Rezerwacje</a>
             <a href="/rezerwacja">Zarezerwuj</a>
             <a href="#">FAQ</a>
             <a href="#">Nasze kina</a>

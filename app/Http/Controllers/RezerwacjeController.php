@@ -14,6 +14,14 @@ class RezerwacjeController extends Controller
         $rezerwacje = Rezerwacje::with('seans', 'user')->get();
         return view('rezerwacje.show', compact('rezerwacje'));
     }
+    public function showRezerwacje()
+    {
+        $rezerwacje = Rezerwacje::with('seans.film')
+            ->where('user_id', auth()->id())
+            ->get();
+
+        return view('rezerwacje.show-rezerwacje', compact('rezerwacje'));
+    }
     public function create($seanses_id)
     {
         $rezerwacja = Rezerwacje::with('seans', 'user')->findOrFail($seanses_id);
@@ -36,4 +44,10 @@ class RezerwacjeController extends Controller
 
         return redirect('/')->with('success', 'Rezerwacja została zapisana - Popełniłeś błąd edytuj lub anuluj rezerwację w sekcji "Moje Rezerwacje" w Menu Głównym.!');
     }
+    public function editView(int $id)
+    {
+        $rezerwacja = Rezerwacje::with('seans.sala', 'seans.film')->findOrFail($id);
+        return view('rezerwacje.editView', compact('rezerwacja'));
+    }
+
 }
