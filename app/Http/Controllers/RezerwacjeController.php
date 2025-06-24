@@ -18,10 +18,12 @@ class RezerwacjeController extends Controller
     {
         $rezerwacje = Rezerwacje::with('seans.film')
             ->where('user_id', auth()->id())
+            ->where('is_active', true)
             ->get();
 
         return view('rezerwacje.show-rezerwacje', compact('rezerwacje'));
     }
+
     public function create($seanses_id)
     {
         $rezerwacja = Rezerwacje::with('seans', 'user')->findOrFail($seanses_id);
@@ -46,8 +48,46 @@ class RezerwacjeController extends Controller
     }
     public function editView(int $id)
     {
-        $rezerwacja = Rezerwacje::with('seans.sala', 'seans.film')->findOrFail($id);
-        return view('rezerwacje.editView', compact('rezerwacja'));
+        $rezerwacja = Rezerwacje::with('seans.film')->findOrFail($id);
+        $seanse = Seanse::with('film')->get();
+        return view('rezerwacje.editView', compact('rezerwacja', 'seanse'));
     }
 
+    public function update(Request $request, int $id)
+    {
+        $validated = $request->validate([
+            'film_id' => ['required', 'exists:films,id'],
+            'data' => ['required', 'date'],
+            'godzina' => ['required', 'date_format:H:i'],
+            'liczba_miejsc' => ['required', 'integer', 'min:1'],
+        ]);
+
+        $rezerwacja = Rezerwacje::findOrFail($id);
+        $seans = Seanse::where('film_id', $validated['film_id'])
+            ->where('data', $validated['data'])
+            ->where('godzina', $validated['godzina'])
+            ->first();
+
+        if (!$seans) {
+            return back()->withErrors([
+                'data' => 'Brak seansu z tym filmem, datą i godziną.'
+            ])->withInput();
+
+        }
+
+        $rezerwacja->update([
+            'seans_id' => $seans->id,
+            'liczba_miejsc' => $validated['liczba_miejsc'],
+        ]);
+
+        return redirect('/rezerwacja-dokonana');
+    }
+    public function delete(int $id)
+    {
+        $rezerwacja = Rezerwacje::findOrFail($id);
+        $rezerwacja->is_active = false;
+        $rezerwacja->save();
+
+        return redirect('/rezerwacja-dokonana');
+    }
 }

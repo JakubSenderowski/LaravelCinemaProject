@@ -4,7 +4,6 @@
     <form action="{{ route('rezerwacja.store') }}" method="POST" class="space-y-4">
         @csrf
 
-        {{-- Ukryte dane z filmu i seansu --}}
         <input type="hidden" name="film_id" value="{{ $rezerwacja->seans->film->id }}">
         <input type="hidden" name="seans_id" value="{{ $rezerwacja->seans->id }}">
 

@@ -17,6 +17,7 @@
                     :godzina="$rezerwacja->seans->godzina"
                     :liczba_miejsc="$rezerwacja->liczba_miejsc"
                     :id="$rezerwacja->id"
+                    :rezerwacja="$rezerwacja"
                 />
             @endforeach
         </div>

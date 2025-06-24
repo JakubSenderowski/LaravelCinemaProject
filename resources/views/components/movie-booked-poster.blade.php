@@ -1,5 +1,6 @@
 @props([
     'id',
+    'rezerwacja',
     'seans_id',
     'src',
     'tytul',
@@ -21,6 +22,11 @@
         @endif
         <a href="{{ route('rezerwacja.editView', $id) }}" class="btn btn-primary">Edytuj</a>
 
-        <span class="btn btn-danger delete">Usuń</span>
+        <form action="{{ route('rezerwacja.delete', $rezerwacja) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Usuń</button>
+        </form>
+
     </div>
 </div>

@@ -15,7 +15,8 @@ Route::get('/rezerwacja/{id}', [RezerwacjeController::class, 'create'])->name('r
 Route::post('/rezerwacja', [RezerwacjeController::class, 'store'])->name('rezerwacja.store');
 Route::get('/rezerwacja-dokonana', [RezerwacjeController::class, 'showRezerwacje'])->name('rezerwacja.showRezerwacje');
 Route::get('/rezerwacja-dokonana-edycja/{id}', [RezerwacjeController::class, 'editView'])->name('rezerwacja.editView');
-
+Route::post('/rezerwacja-dokonana-edycja/{id}', [RezerwacjeController::class, 'update'])->name('rezerwacja.update');
+Route::delete('rezerwacja-dokonana/{id}', [RezerwacjeController::class, 'delete'])->name('rezerwacja.delete');
 
 Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name('login.post');
