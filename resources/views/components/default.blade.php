@@ -29,6 +29,11 @@
             </a>
         </div>
         <div class="space-x-6 font-bold">
+            @auth
+                @if(Auth::user()->is_admin)
+            <a href="/dashboard"><span class="text-yellow-300 font-semibold"">Admin DashBoard</span></a>
+                @endif
+            @endauth
             <a href="/rezerwacja-dokonana">Moje Rezerwacje</a>
             <a href="/rezerwacja">Zarezerwuj</a>
             <a href="#">FAQ</a>

@@ -1,5 +1,4 @@
 <x-default>
-    <h1>NOWA STRONA GŁÓWNA?</h1>
     <div class="space-y-10">
         <section class="text-center pt-6">
             <h1 class="font-bold text-4xl mb-3">Wyszukaj film!</h1>

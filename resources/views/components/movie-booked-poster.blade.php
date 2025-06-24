@@ -21,7 +21,6 @@
             <p class="text-sm text-white/90">Zarezerwowane miejsca: {{ $liczba_miejsc }}</p>
         @endif
         <a href="{{ route('rezerwacja.editView', $id) }}" class="btn btn-primary">Edytuj</a>
-
         <form action="{{ route('rezerwacja.delete', $rezerwacja) }}" method="POST">
             @csrf
             @method('DELETE')

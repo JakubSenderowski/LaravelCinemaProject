@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -25,5 +26,13 @@ Route::get("/register", [AuthController::class, "register"])->name("register");
 Route::post("/register", [AuthController::class, "registerPost"])->name('register.post');
 
 Route::post('/logout', [AuthController::class, "logout"])->name("logout");
-Route::get('/dashboard', [AdminController::class, "adminDashboard"])->name("dashboard");
 
+
+
+Route::get('/dashboard', [AdminController::class, "adminDashboard"])->name("dashboard");
+Route::get('/filmy-zarzadzanie', [AdminFilmController::class, "index"])->name("admin.filmy.index");
+Route::get('/filmy-zarzadzanie-dodawanie', [AdminFilmController::class, 'create'])->name('admin.filmy.create');
+Route::post('/filmy-zarzadzanie-dodawanie', [AdminFilmController::class, 'store'])->name('admin.filmy.store');
+Route::get('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'edit'])->name('admin.filmy.editView');
+Route::post('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'update'])->name('admin.filmy.update');
+Route::delete('filmy-zarzadzanie/{id}', [AdminFilmController::class, 'destroy'])->name('admin.filmy.destroy');
