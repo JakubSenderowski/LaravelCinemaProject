@@ -41,3 +41,6 @@ Route::post('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'upda
 Route::delete('filmy-zarzadzanie/{id}', [AdminFilmController::class, 'destroy'])->name('admin.filmy.destroy');
 //Zarządzanie Rezerwacjami - Adminek
 Route::get('/rezerwacje-zarzadzanie', [AdminRezerwacjeController::class, "index"])->name("admin.rezerwacje.index");
+Route::get('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::class, 'edit'])->name('admin.rezerwacje.editView');
+Route::post('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::class, 'update'])->name('admin.rezerwacje.update');
+Route::delete('rezerwacje-zarzadzanie/{id}', [AdminRezerwacjeController::class, 'destroy'])->name('admin.rezerwacje.destroy');

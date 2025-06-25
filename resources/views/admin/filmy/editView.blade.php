@@ -48,7 +48,6 @@
                 <label class="text-white block mb-1">Aktywny?</label>
                 <select name="is_active" class="w-full p-2 rounded bg-white/10 text-white" required>
                     <option value="1" {{ $film->is_active ? 'selected' : '' }}>Tak</option>
-                    <option value="0" {{ !$film->is_active ? 'selected' : '' }}>Nie</option>
                 </select>
             </div>
 

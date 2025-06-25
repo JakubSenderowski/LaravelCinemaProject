@@ -9,6 +9,7 @@ class Rezerwacje extends Model
         'user_id',
         'seans_id',
         'liczba_miejsc',
+        'is_active',
     ];
 
     public function user()
