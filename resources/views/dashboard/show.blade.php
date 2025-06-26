@@ -28,8 +28,11 @@
                 <h2 class="text-lg font-semibold mb-2">Sale</h2>
                 <a href="/sale-zarzadzanie" class="btn btn-primary">Zarządzaj</a>
             </div>
-
-
+            <div class="bg-white/10 rounded-xl shadow-md p-6 flex flex-col items-center text-white hover:scale-105 transition w-full max-w-xs">
+                <img src="/storage/icons/kategorie-dashboard.png" alt="Kategorie" class="w-34 h-34 object-contain mb-4">
+                <h2 class="text-lg font-semibold mb-2">Kategorie</h2>
+                <a href="/kategorie-zarzadzanie" class="btn btn-primary">Zarządzaj</a>
+            </div>
         </div>
     </div>
 </x-default>

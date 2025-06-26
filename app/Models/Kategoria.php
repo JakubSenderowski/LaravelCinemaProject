@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kategoria extends Model
 {
+    protected $fillable = [
+        'nazwa',
+        'is_active',
+    ];
+
     // Stara relacja 1:N`
     public function films()
     {

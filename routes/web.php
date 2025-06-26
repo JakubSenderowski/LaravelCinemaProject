@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminRezerwacjeController;
 use App\Http\Controllers\AdminSeanseController;
 use App\Http\Controllers\AdminSaleController;
+use App\Http\Controllers\AdminKategorieController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -62,3 +63,5 @@ Route::post('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'store']
 Route::get('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'edit'])->name('admin.sale.editView');
 Route::post('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'update'])->name('admin.sale.update');
 Route::delete('sale-zarzadzanie/{id}', [AdminSaleController::class, 'destroy'])->name('admin.sale.destroy');
+//Zarządzanie Kategoriami - Adminek
+Route::get('/kategorie-zarzadzanie', [AdminKategorieController::class, 'index'])->name('admin.kategorie.index');

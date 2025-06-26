@@ -11,6 +11,7 @@ class Sala extends Model
         'liczba_miejsc',
         'is_active',
     ];
+
     public function seanse()
     {
         return $this->hasMany(Seanse::class);
