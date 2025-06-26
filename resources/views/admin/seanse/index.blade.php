@@ -12,6 +12,8 @@
         :nazwa="$seans->sala->nazwa"
         :data="$seans->data"
         :godzina="$seans->godzina"
+        :is_active="$seans->is_active"
+        :id="$seans->id"
         />
         @endforeach
     </div>

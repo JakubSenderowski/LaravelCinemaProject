@@ -51,3 +51,5 @@ Route::delete('rezerwacje-zarzadzanie/{id}', [AdminRezerwacjeController::class, 
 Route::get('/seanse-zarzadzanie', [AdminSeanseController::class, 'index'])->name('admin.seanse.index');
 Route::get('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'create'])->name('admin.seanse.create');
 Route::post('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'store'])->name('admin.seanse.store');
+Route::get('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'edit'])->name('admin.seanse.editView');
+Route::post('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'update'])->name('admin.seanse.update');
