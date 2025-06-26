@@ -1,5 +1,10 @@
 <x-default>
     <div class="flex justify-between items-center mb-8">
+        @if(session('success'))
+            <div class="bg-green text-white px-4 py-2 rounded mb-4 text-center">
+                {{ session('success') }}
+            </div>
+        @endif
         <h1 class="text-2xl font-bold text-white text-center w-full">Lista Kategorii</h1>
         <a href="{{ route('admin.kategorie.create') }}" class=" text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
             ➕ Dodaj

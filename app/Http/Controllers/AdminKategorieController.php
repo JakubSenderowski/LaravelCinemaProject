@@ -35,7 +35,7 @@ class AdminKategorieController extends Controller
         ]);
 
         Kategoria::create($validated);
-        return redirect()->route('admin.kategorie.index');
+        return redirect()->route('admin.kategorie.index')->with("success", "Kategoria została dodana pomyślnie :)!");
     }
 
     /**
@@ -67,7 +67,7 @@ class AdminKategorieController extends Controller
 
         $kategorie = Kategoria::findOrFail($id);
         $kategorie->update($validated);
-        return redirect()->route('admin.kategorie.index');
+        return redirect()->route('admin.kategorie.index')->with('success', 'Kategoria została zaktualizowana. :)');
     }
 
     /**
@@ -78,6 +78,6 @@ class AdminKategorieController extends Controller
         $kategorie = Kategoria::findOrFail($id);
         $kategorie->is_active = false;
         $kategorie->save();
-        return redirect('/kategorie-zarzadzanie');
+        return redirect('/kategorie-zarzadzanie')->with('success', 'Kategoria została usunięta. :)');
     }
 }

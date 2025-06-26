@@ -38,7 +38,7 @@ class AdminSaleController extends Controller
 
         Sala::create($validated);
 
-        return redirect()->route('admin.sale.index');
+        return redirect()->route('admin.sale.index')->with("success", "Sala została dodana pomyślnie :)!");
     }
 
 
@@ -71,7 +71,7 @@ class AdminSaleController extends Controller
         ]);
         $sale = Sala::findOrFail($id);
         $sale->update($validated);
-        return redirect()->route('admin.sale.index');
+        return redirect()->route('admin.sale.index')->with('success', 'Sala została zaktualizowana. :)');
     }
 
     /**
@@ -82,6 +82,6 @@ class AdminSaleController extends Controller
         $sale = Sala::findOrFail($id);
         $sale->is_active = false;
         $sale->save();
-        return redirect('/sale-zarzadzanie');
+        return redirect('/sale-zarzadzanie')->with('success', 'Sala została usunięta. :)');
     }
 }

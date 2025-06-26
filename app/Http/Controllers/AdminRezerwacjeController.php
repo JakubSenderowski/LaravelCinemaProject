@@ -45,7 +45,7 @@ class AdminRezerwacjeController extends Controller
 
         Rezerwacje::create($validated);
 
-        return redirect()->route('admin.rezerwacje.index')->with('success', 'Dodano nową rezerwację!');
+        return redirect()->route('admin.rezerwacje.index')->with('success', 'Rezerwacja została dodana pomyślnie. :)');
     }
 
 
@@ -85,7 +85,7 @@ class AdminRezerwacjeController extends Controller
 
         $rezerwacja = Rezerwacje::findOrFail($id);
         $rezerwacja->update($validated);
-        return redirect()->route('admin.rezerwacje.index')->with('success', 'Rezerwacja zaktualizowana.');
+        return redirect()->route('admin.rezerwacje.index')->with('success', 'Rezerwacja została zaktualizowana. :)');
     }
 
 
@@ -97,6 +97,6 @@ class AdminRezerwacjeController extends Controller
         $rezerwacja = Rezerwacje::findOrFail($id);
         $rezerwacja->is_active = false;
         $rezerwacja->save();
-        return redirect('/rezerwacje-zarzadzanie');
+        return redirect('/rezerwacje-zarzadzanie')->with('success', 'Rezerwacja została usunięta. :)');
     }
 }

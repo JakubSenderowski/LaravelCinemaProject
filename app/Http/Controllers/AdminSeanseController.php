@@ -45,7 +45,7 @@ class AdminSeanseController extends Controller
 
         Seanse::create($validated);
 
-        return redirect()->route('admin.seanse.index')->with('success', 'Seans został dodany!');
+        return redirect()->route('admin.seanse.index')->with('success', 'Seans został dodany pomyślnie! :)');
     }
 
 
@@ -84,7 +84,7 @@ class AdminSeanseController extends Controller
         ]);
         $seans= Seanse::findOrFail($id);
         $seans->update($validated);
-        return redirect()->route('admin.seanse.index');
+        return redirect()->route('admin.seanse.index')->with('success', 'Seans został zaktualizowany. :)');
     }
 
     /**
@@ -95,6 +95,6 @@ class AdminSeanseController extends Controller
         $seans = Seanse::findOrFail($id);
         $seans->is_active = false;
         $seans->save();
-        return redirect('/seanse-zarzadzanie');
+        return redirect('/seanse-zarzadzanie')->with('success', 'Seans został usunięty. :)');
     }
 }

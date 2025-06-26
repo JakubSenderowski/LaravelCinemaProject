@@ -33,15 +33,15 @@ class AdminFilmController extends Controller
         $validated = $request->validate([
             'tytul' => ['required', 'min: 5'],
             'opis' => ['required', 'min: 10'],
-            'czas_trwania' => ['required', 'integer', 'min: 1'],
+            'czas_trwania' => ['required', 'integer', 'min: 60'],
             'poster' => ['required'],
-            'is_hot' => ['required', 'boolean'],
+            'is_hot' => ['boolean'],
             'is_active' => ['required', 'boolean'],
             'kategoria_id' => ['required', 'exists:kategorias,id'],
         ]);
 
         Film::create($validated);
-        return redirect()->route('admin.filmy.index');
+        return redirect()->route('admin.filmy.index')->with("success", "Film został dodany pomyślnie :)!");
     }
 
     /**
@@ -81,7 +81,7 @@ class AdminFilmController extends Controller
         $film = Film::findOrFail($id);
         $film->update($validated);
 
-        return redirect()->route('admin.filmy.index')->with('success', 'Film został zaktualizowany.');
+        return redirect()->route('admin.filmy.index')->with('success', 'Film został zaktualizowany. :)');
     }
 
 
@@ -94,6 +94,6 @@ class AdminFilmController extends Controller
         $film->is_active = false;
         $film->save();
 
-        return redirect('/filmy-zarzadzanie');
+        return redirect('/filmy-zarzadzanie')->with('success', 'Film został usunięty. :)');
     }
 }

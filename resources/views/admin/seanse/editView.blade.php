@@ -14,6 +14,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('film_id')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4">
@@ -25,21 +28,33 @@
                         </option>
                     @endforeach
                 </select>
+                @error('sala_id')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="data" class="text-white block mb-1 font-medium">📅 Data:</label>
                 <input type="date" name="data" id="data" value="{{ $seanse->data }}" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" required>
+                @error('data')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="godzina" class="text-white block mb-1 font-medium">⏰ Godzina:</label>
                 <input type="time" name="godzina" id="godzina" value="{{ $seanse->godzina }}" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" required>
+                @error('godzina')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-4">
                 <label for="cena" class="text-white block mb-1 font-medium">💸 Cena biletu (zł):</label>
                 <input type="number" name="cena" id="cena" min="0" value="{{ $seanse->cena }}" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-600" required>
+                @error('cena')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="mb-6">
@@ -47,6 +62,9 @@
                 <select name="is_active" id="is_active" class="w-full p-2 rounded bg-white/10 text-white" required>
                     <option value="1" {{ $seanse->is_active ? 'selected' : '' }}>Aktywna</option>
                 </select>
+                @error('is_active')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="text-center">
