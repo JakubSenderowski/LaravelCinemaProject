@@ -55,7 +55,8 @@ class AdminSaleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sale = Sala::findOrFail($id);
+        return view('admin.sale.editView', compact('sale'));
     }
 
     /**
@@ -63,7 +64,14 @@ class AdminSaleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nazwa' => ['required', 'min:5'],
+            'liczba_miejsc' => ['required', 'integer', 'min:50'],
+            'is_active' => ['required', 'boolean'],
+        ]);
+        $sale = Sala::findOrFail($id);
+        $sale->update($validated);
+        return redirect()->route('admin.sale.index');
     }
 
     /**
@@ -71,6 +79,9 @@ class AdminSaleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sale = Sala::findOrFail($id);
+        $sale->is_active = false;
+        $sale->save();
+        return redirect('/sale-zarzadzanie');
     }
 }

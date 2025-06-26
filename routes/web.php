@@ -59,3 +59,6 @@ Route::delete('seanse-zarzadzanie/{id}', [AdminSeanseController::class, 'destroy
 Route::get('/sale-zarzadzanie', [AdminSaleController::class, 'index'])->name('admin.sale.index');
 Route::get('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'create'])->name('admin.sale.create');
 Route::post('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'store'])->name('admin.sale.store');
+Route::get('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'edit'])->name('admin.sale.editView');
+Route::post('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'update'])->name('admin.sale.update');
+Route::delete('sale-zarzadzanie/{id}', [AdminSaleController::class, 'destroy'])->name('admin.sale.destroy');

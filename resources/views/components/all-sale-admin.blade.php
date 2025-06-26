@@ -1,5 +1,5 @@
 @props([
-//    'id',
+    'id',
     'nazwa',
     'liczba_miejsc',
     'is_active',
@@ -20,16 +20,16 @@
             </li>
         </ul>
     </div>
-{{--    <div class="flex justify-center gap-2 mt-5 flex-wrap">--}}
-{{--        <a href="{{ route('admin.seanse.editView', $id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">--}}
-{{--            ✏️ Edytuj--}}
-{{--        </a>--}}
-{{--        <form action="{{ route('admin.seanse.destroy', $id) }}" method="POST" class="inline-block">--}}
-{{--            @csrf--}}
-{{--            @method('DELETE')--}}
-{{--            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">--}}
-{{--                🗑️ Usuń--}}
-{{--            </button>--}}
-{{--        </form>--}}
-{{--    </div>--}}
+    <div class="flex justify-center gap-2 mt-5 flex-wrap">
+        <a href="{{ route('admin.sale.editView', $id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+            ✏️ Edytuj
+        </a>
+        <form action="{{ route('admin.sale.destroy', $id) }}" method="POST" class="inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+                🗑️ Usuń
+            </button>
+        </form>
+    </div>
 </div>

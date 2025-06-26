@@ -11,6 +11,7 @@
             :nazwa="$sala->nazwa"
         :liczba_miejsc="$sala->liczba_miejsc"
         :is_active="$sala->is_active"
+            :id="$sala->id"
         />
         @endforeach
         </div>
