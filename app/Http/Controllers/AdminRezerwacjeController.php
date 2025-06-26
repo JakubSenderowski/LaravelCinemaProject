@@ -85,7 +85,6 @@ class AdminRezerwacjeController extends Controller
 
         $rezerwacja = Rezerwacje::findOrFail($id);
         $rezerwacja->update($validated);
-
         return redirect()->route('admin.rezerwacje.index')->with('success', 'Rezerwacja zaktualizowana.');
     }
 

@@ -39,7 +39,7 @@ class AdminSeanseController extends Controller
             'data' => ['required', 'date'],
             'godzina' => ['required', 'date_format:H:i'],
             'cena' => ['required', 'numeric', 'min:0'],
-
+            'is_active' => ['required', 'in:0,1'],
         ]);
 
 
@@ -73,13 +73,14 @@ class AdminSeanseController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $validated = $request->validate([
             'film_id' => ['required', 'exists:films,id'],
             'sala_id' => ['required', 'exists:salas,id'],
             'data' => ['required', 'date'],
             'godzina' => ['required', 'date_format:H:i'],
             'cena' => ['required', 'numeric', 'min:0'],
-
+            'is_active' => ['required', 'in:0,1'],
         ]);
         $seans= Seanse::findOrFail($id);
         $seans->update($validated);
@@ -91,6 +92,9 @@ class AdminSeanseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $seans = Seanse::findOrFail($id);
+        $seans->is_active = false;
+        $seans->save();
+        return redirect('/seanse-zarzadzanie');
     }
 }

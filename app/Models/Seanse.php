@@ -12,6 +12,7 @@ class Seanse extends Model
         'data',
         'godzina',
         'cena',
+        'is_active',
     ];
     protected $table = 'seanses';
 

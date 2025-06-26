@@ -3,6 +3,7 @@
     'tytul',
     'nazwa',
     'data',
+    'cena',
     'godzina',
     'is_active',
 ])
@@ -14,6 +15,7 @@
             <li>🎬 <strong>Rodzaj/Numer Sali:</strong> {{ $nazwa }}</li>
             <li>📅 <strong>Data seansu:</strong> {{ $data }}</li>
             <li>⏱ <strong>Godzina Seansu:</strong> {{ $godzina }} min</li>
+            <li>💸 <strong>Cena za bilet:</strong> {{ $cena }} zł</li>
             <li>
                 📌 <strong>Status:</strong>
                 @if($is_active)
@@ -28,12 +30,12 @@
         <a href="{{ route('admin.seanse.editView', $id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
             ✏️ Edytuj
         </a>
-{{--        <form action="{{ route('admin.rezerwacje.destroy', $id) }}" method="POST" class="inline-block">--}}
-{{--            @csrf--}}
-{{--            @method('DELETE')--}}
-{{--            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">--}}
-{{--                🗑️ Usuń--}}
-{{--            </button>--}}
-{{--        </form>--}}
+        <form action="{{ route('admin.seanse.destroy', $id) }}" method="POST" class="inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+                🗑️ Usuń
+            </button>
+        </form>
     </div>
 </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminRezerwacjeController;
 use App\Http\Controllers\AdminSeanseController;
+use App\Http\Controllers\AdminSaleController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -53,3 +54,8 @@ Route::get('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'crea
 Route::post('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'store'])->name('admin.seanse.store');
 Route::get('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'edit'])->name('admin.seanse.editView');
 Route::post('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'update'])->name('admin.seanse.update');
+Route::delete('seanse-zarzadzanie/{id}', [AdminSeanseController::class, 'destroy'])->name('admin.seanse.destroy');
+//Zarządzanie Salami - Adminek
+Route::get('/sale-zarzadzanie', [AdminSaleController::class, 'index'])->name('admin.sale.index');
+Route::get('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'create'])->name('admin.sale.create');
+Route::post('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'store'])->name('admin.sale.store');
