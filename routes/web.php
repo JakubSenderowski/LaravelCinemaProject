@@ -65,3 +65,8 @@ Route::post('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'updat
 Route::delete('sale-zarzadzanie/{id}', [AdminSaleController::class, 'destroy'])->name('admin.sale.destroy');
 //Zarządzanie Kategoriami - Adminek
 Route::get('/kategorie-zarzadzanie', [AdminKategorieController::class, 'index'])->name('admin.kategorie.index');
+Route::get('/kategorie-zarzadzanie-dodawanie', [AdminKategorieController::class, 'create'])->name('admin.kategorie.create');
+Route::post('/kategorie-zarzadzanie-dodawanie', [AdminKategorieController::class, 'store'])->name('admin.kategorie.store');
+Route::get('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::class, 'edit'])->name('admin.kategorie.editView');
+Route::post('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::class, 'update'])->name('admin.kategorie.update');
+Route::delete('kategoria-zarzadzanie/{id}', [AdminKategorieController::class, 'destroy'])->name('admin.kategorie.destroy');

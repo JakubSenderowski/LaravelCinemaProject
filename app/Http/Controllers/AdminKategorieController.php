@@ -21,7 +21,7 @@ class AdminKategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategorie.create');
     }
 
     /**
@@ -29,7 +29,13 @@ class AdminKategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+           'nazwa' => ['required', 'min:5'],
+           'is_active' => ['required', 'boolean'],
+        ]);
+
+        Kategoria::create($validated);
+        return redirect()->route('admin.kategorie.index');
     }
 
     /**
@@ -45,7 +51,8 @@ class AdminKategorieController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategorie = Kategoria::findOrFail($id);
+        return view('admin.kategorie.editView', compact('kategorie'));
     }
 
     /**
@@ -53,7 +60,14 @@ class AdminKategorieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nazwa' => ['required', 'min:5'],
+            'is_active' => ['required', 'boolean'],
+        ]);
+
+        $kategorie = Kategoria::findOrFail($id);
+        $kategorie->update($validated);
+        return redirect()->route('admin.kategorie.index');
     }
 
     /**
@@ -61,6 +75,9 @@ class AdminKategorieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategorie = Kategoria::findOrFail($id);
+        $kategorie->is_active = false;
+        $kategorie->save();
+        return redirect('/kategorie-zarzadzanie');
     }
 }
