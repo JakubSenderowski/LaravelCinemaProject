@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Seanse extends Model
 {
+    protected $fillable = [
+        'film_id',
+        'sala_id',
+        'data',
+        'godzina',
+        'cena',
+    ];
     protected $table = 'seanses';
 
     public function film()

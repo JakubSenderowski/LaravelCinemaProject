@@ -49,3 +49,5 @@ Route::post('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::c
 Route::delete('rezerwacje-zarzadzanie/{id}', [AdminRezerwacjeController::class, 'destroy'])->name('admin.rezerwacje.destroy');
 //Zarządzanie Seansami - Adminek
 Route::get('/seanse-zarzadzanie', [AdminSeanseController::class, 'index'])->name('admin.seanse.index');
+Route::get('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'create'])->name('admin.seanse.create');
+Route::post('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'store'])->name('admin.seanse.store');
