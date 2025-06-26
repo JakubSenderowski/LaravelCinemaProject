@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminFilmController;
 use App\Http\Controllers\AdminRezerwacjeController;
+use App\Http\Controllers\AdminSeanseController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -41,6 +42,10 @@ Route::post('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'upda
 Route::delete('filmy-zarzadzanie/{id}', [AdminFilmController::class, 'destroy'])->name('admin.filmy.destroy');
 //Zarządzanie Rezerwacjami - Adminek
 Route::get('/rezerwacje-zarzadzanie', [AdminRezerwacjeController::class, "index"])->name("admin.rezerwacje.index");
+Route::get('/rezerwacje-zarzadzanie-dodawanie', [AdminRezerwacjeController::class, 'create'])->name('admin.rezerwacje.create');
+Route::post('/rezerwacje-zarzadzanie-dodawanie', [AdminRezerwacjeController::class, 'store'])->name('admin.rezerwacje.store');
 Route::get('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::class, 'edit'])->name('admin.rezerwacje.editView');
 Route::post('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::class, 'update'])->name('admin.rezerwacje.update');
 Route::delete('rezerwacje-zarzadzanie/{id}', [AdminRezerwacjeController::class, 'destroy'])->name('admin.rezerwacje.destroy');
+//Zarządzanie Seansami - Adminek
+Route::get('/seanse-zarzadzanie', [AdminSeanseController::class, 'index'])->name('admin.seanse.index');

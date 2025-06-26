@@ -21,18 +21,33 @@ class AdminRezerwacjeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-        //
+        $uzytkownicy = User::all();
+        $seanse = Seanse::with('film')->get();
+
+        return view('admin.rezerwacje.create', compact('uzytkownicy', 'seanse'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'seans_id' => ['required', 'exists:seanses,id'],
+            'liczba_miejsc' => ['required', 'integer', 'min:1'],
+            'is_active' => ['required', 'boolean'],
+        ]);
+
+        Rezerwacje::create($validated);
+
+        return redirect()->route('admin.rezerwacje.index')->with('success', 'Dodano nową rezerwację!');
     }
+
 
     /**
      * Display the specified resource.
