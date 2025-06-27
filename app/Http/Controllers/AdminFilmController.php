@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Film;
+use App\Models\Tag;
 use App\Models\Kategoria;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class AdminFilmController extends Controller
     public function create()
     {
         $kategorie = Kategoria::all();
-        return view('admin.filmy.create', compact('kategorie'));
+        $tags = Tag::where('is_active', true)->get();
+        return view('admin.filmy.create', compact('kategorie', 'tags'));
     }
 
     /**
@@ -31,18 +33,26 @@ class AdminFilmController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'tytul' => ['required', 'min: 5'],
-            'opis' => ['required', 'min: 10'],
-            'czas_trwania' => ['required', 'integer', 'min: 60'],
+            'tytul' => ['required', 'min:5'],
+            'opis' => ['required', 'min:10'],
+            'czas_trwania' => ['required', 'integer', 'min:60'],
             'poster' => ['required'],
             'is_hot' => ['boolean'],
             'is_active' => ['required', 'boolean'],
             'kategoria_id' => ['required', 'exists:kategorias,id'],
         ]);
 
-        Film::create($validated);
+
+        $film = Film::create($validated);
+
+        // Tutaj przypięcie taga jeśli zaznaczono taga.
+        if ($request->has('tags')) {
+            $film->tags()->sync($request->input('tags'));
+        }
+
         return redirect()->route('admin.filmy.index')->with("success", "Film został dodany pomyślnie :)!");
     }
+
 
     /**
      * Display the specified resource.
@@ -59,7 +69,8 @@ class AdminFilmController extends Controller
     {
         $film = Film::with('kategoria')->findOrFail($id);
         $kategoria = Kategoria::all();
-        return view('admin.filmy.editView', compact('film', 'kategoria'));
+        $tags = Tag::where('is_active', true)->get();
+        return view('admin.filmy.editView', compact('film', 'kategoria', 'tags'));
     }
 
     /**
@@ -80,7 +91,11 @@ class AdminFilmController extends Controller
 
         $film = Film::findOrFail($id);
         $film->update($validated);
-
+        if ($request->has('tags')) {
+            $film->tags()->sync($request->input('tags'));
+        } else {
+            $film->tags()->sync([]); // Usunie jak nic nie jest zaznaczone
+        }
         return redirect()->route('admin.filmy.index')->with('success', 'Film został zaktualizowany. :)');
     }
 

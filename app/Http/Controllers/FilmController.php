@@ -9,8 +9,12 @@ class FilmController extends Controller
 {
     public function index()
     {
-        $filmy = Film::where('is_active', true)->get();
+        $filmy = Film::with(['kategoria', 'tags'])
+        ->where('is_active', true)
+            ->get();
+
         $filmyPoliczone = Film::where('is_active', true)->count();
+
         $hotMovies = Film::with('kategoria')
             ->where('is_active', true)
             ->where('is_hot', true)
@@ -19,4 +23,5 @@ class FilmController extends Controller
 
         return view('film.index', compact('filmy', 'filmyPoliczone', 'hotMovies'));
     }
+
 }

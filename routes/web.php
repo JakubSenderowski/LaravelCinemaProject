@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminRezerwacjeController;
 use App\Http\Controllers\AdminSeanseController;
 use App\Http\Controllers\AdminSaleController;
 use App\Http\Controllers\AdminKategorieController;
+use App\Http\Controllers\AdminTagController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -70,3 +71,11 @@ Route::post('/kategorie-zarzadzanie-dodawanie', [AdminKategorieController::class
 Route::get('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::class, 'edit'])->name('admin.kategorie.editView');
 Route::post('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::class, 'update'])->name('admin.kategorie.update');
 Route::delete('kategoria-zarzadzanie/{id}', [AdminKategorieController::class, 'destroy'])->name('admin.kategorie.destroy');
+//Zarządzanie Tagami - Adminek
+Route::get('/tagi-zarzadzanie', [AdminTagController::class, 'index'])->name('admin.tags.index');
+Route::get('/tagi-zarzadzanie-dodawanie', [AdminTagController::class, 'create'])->name('admin.tags.create');
+Route::post('/tagi-zarzadzanie-dodawanie', [AdminTagController::class, 'store'])->name('admin.tags.store');
+Route::get('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'edit'])->name('admin.tags.editView');
+Route::post('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'update'])->name('admin.tags.update');
+Route::delete('tagi-zarzadzanie/{id}', [AdminTagController::class, 'destroy'])->name('admin.tags.destroy');
+

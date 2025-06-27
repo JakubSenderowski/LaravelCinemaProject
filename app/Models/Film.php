@@ -23,10 +23,11 @@ class Film extends Model
     }
 
     // Nowa relacja wiele-do-wielu
-    public function kategorie()
+    public function tags()
     {
-        return $this->belongsToMany(Kategoria::class, 'film_kategoria');
+        return $this->belongsToMany(Tag::class, 'film_tag')->where('tags.is_active', true);
     }
+
 
     public function seanse()
     {

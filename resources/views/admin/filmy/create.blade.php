@@ -73,6 +73,20 @@
                 <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
+            <div>
+                <label for="tags" class="block text-sm font-medium">Tagi</label>
+                <select name="tags[]" id="tags" multiple
+                        class="w-full mt-1 p-2 rounded bg-white/10 border border-white/20 text-white">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}" {{ collect(old('tags'))->contains($tag->id) ? 'selected' : '' }}>
+                            {{ $tag->nazwa }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('tags')
+                <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             <div class="text-center">
                 <button type="submit"

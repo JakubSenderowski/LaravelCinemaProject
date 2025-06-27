@@ -6,35 +6,45 @@
                 <x-input> </x-input>
             </x-form>
         </section>
+
         <x-section-heading>Top 3 - Najlepsze filmy tego miesiąca 🔥.</x-section-heading>
         <div class="mt-10 px-6 grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
-        @foreach($hotMovies as $hotMovie)
+            @foreach($hotMovies as $hotMovie)
                 <x-movie-poster
                     :src="'/storage/posters/' . $hotMovie->poster"
                     :tytul="$hotMovie->tytul"
                     :kategoria="$hotMovie->kategoria->nazwa"
                     :czastrwania="$hotMovie->czas_trwania . ' min'"
                 />
-        @endforeach
+            @endforeach
         </div>
     </div>
+
     <x-section-heading>Nasze filmy</x-section-heading>
     <div class="mt-10 px-6 grid grid-cols-1 md:grid-cols-4 gap-6 place-items-center">
         @foreach($filmy as $film)
-            <x-movie-poster
-                :src="'/storage/posters/' . $film->poster"
-                :tytul="$film->tytul"
-                :kategoria="$film->kategoria->nazwa"
-                :czastrwania="$film->czas_trwania . ' min'"
-            />
+            <div>
+                <x-movie-poster
+                    :src="'/storage/posters/' . $film->poster"
+                    :tytul="$film->tytul"
+                    :kategoria="$film->kategoria->nazwa"
+                    :czastrwania="$film->czas_trwania . ' min'"
+                />
+                <div class="mt-2 flex flex-wrap gap-2 justify-center">
+                    @foreach($film->tags as $tag)
+                        <span class="bg-pink-600 text-white text-xs px-2 py-1 rounded-full">{{ $tag->nazwa }}</span>
+                    @endforeach
+                </div>
+            </div>
         @endforeach
     </div>
+
     <x-section-heading>Hej! zerknij na nasze statystyki ☺️</x-section-heading>
     <div class="flex flex-col md:flex-row justify-center gap-10 text-center text-white text-xl font-bold">
         <div class="text-left ml-0">
             <p class="text-white/60 text-base mb-2">🎬 Filmów w bazie:</p>
             <span class="animate-bounce-in text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-                <span>{{$filmyPoliczone}}</span>
+                <span>{{ $filmyPoliczone }}</span>
             </span>
         </div>
         <div class="text-left ml-0">
@@ -43,8 +53,5 @@
                 TUTAJ DAĆ PRZELICZONYCH USERÓW Z BAZY - DO ZROBIENIA
             </span>
         </div>
-
-
-
     </div>
 </x-default>
