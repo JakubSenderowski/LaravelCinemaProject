@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class AdminFilmController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */

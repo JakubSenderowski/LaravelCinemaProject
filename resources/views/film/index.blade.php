@@ -1,6 +1,10 @@
 <x-default>
     <div class="space-y-12">
-
+        @if(session('error'))
+            <div class="bg-red-600 text-white px-4 py-2 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
         <section class="text-center pt-8">
             <h1 class="font-bold text-4xl text-primary mb-4">
                 Wyszukaj film!
