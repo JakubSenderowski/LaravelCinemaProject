@@ -18,6 +18,9 @@
         <a href="{{route('admin.seanse.create')}}" class=" text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
             ➕ Dodaj
         </a>
+        <a href="{{ route('admin.seanse.index') }}" class=" text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+            ➕ Powrót
+        </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
     @foreach($seanse as $seans)

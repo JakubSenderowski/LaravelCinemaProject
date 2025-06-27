@@ -84,4 +84,18 @@ class AdminSaleController extends Controller
         $sale->save();
         return redirect('/sale-zarzadzanie')->with('success', 'Sala została usunięta. :)');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $sale = Sala::when($query, fn($q) =>
+        $q->where(function($q2) use ($query) {
+            $q2->where('nazwa', 'like', "%{$query}%")
+                ->orWhere('liczba_miejsc', '=', (int)$query);
+        })
+        )->get();
+
+        return view('admin.sale.index', compact('sale', 'query'));
+    }
+
 }

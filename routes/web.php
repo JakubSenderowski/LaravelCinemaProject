@@ -64,6 +64,8 @@ Route::post('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'u
 Route::delete('seanse-zarzadzanie/{id}', [AdminSeanseController::class, 'destroy'])->name('admin.seanse.destroy');
 //Zarządzanie Salami - Adminek
 Route::get('/sale-zarzadzanie', [AdminSaleController::class, 'index'])->name('admin.sale.index');
+Route::get('/sale-zarzadzanie-wyszukaj', [AdminSaleController::class, 'search'])->name('admin.sale.search');
+
 Route::get('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'create'])->name('admin.sale.create');
 Route::post('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'store'])->name('admin.sale.store');
 Route::get('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'edit'])->name('admin.sale.editView');
