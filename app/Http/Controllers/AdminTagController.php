@@ -60,5 +60,16 @@ class AdminTagController extends Controller
 
         return redirect()->route('admin.tags.index')->with('success', 'Tag został dezaktywowany. :)');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $tags = Tag::when($query, fn($q) =>
+        $q->where('nazwa', 'like', "%{$query}%")
+        )->get();
+
+        return view('admin.tags.index', compact('tags', 'query'));
+    }
+
 
 }

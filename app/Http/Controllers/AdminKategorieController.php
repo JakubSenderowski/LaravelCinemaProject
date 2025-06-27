@@ -80,4 +80,15 @@ class AdminKategorieController extends Controller
         $kategorie->save();
         return redirect('/kategorie-zarzadzanie')->with('success', 'Kategoria została usunięta. :)');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $kategorie = Kategoria::when($query, fn($q) =>
+        $q->where('nazwa', 'like', "%{$query}%")
+        )->get();
+
+        return view('admin.kategorie.index', compact('kategorie', 'query'));
+    }
+
 }

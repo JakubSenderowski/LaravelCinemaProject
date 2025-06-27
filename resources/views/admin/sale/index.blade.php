@@ -1,6 +1,5 @@
 <x-default>
     <div class="flex justify-between items-center mb-8">
-        <h1 class="text-2xl font-bold text-white text-center w-full">Lista Sal</h1>
         <form action="{{ route('admin.sale.search') }}" method="GET" class="mb-6">
             <input
                 name="q"
@@ -10,6 +9,7 @@
                 class="rounded-xl bg-white/10 border border-white/10 px-5 py-4 w-full"
             />
         </form>
+        <h1 class="text-2xl font-bold text-white text-center w-full">Lista Sal</h1>
         @if(session('success'))
             <div class="bg-green text-white px-4 py-2 rounded mb-4 text-center">
                 {{ session('success') }}

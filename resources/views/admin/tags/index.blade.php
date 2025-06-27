@@ -1,5 +1,14 @@
 <x-default>
     <div class="flex justify-between items-center mb-8">
+        <form action="{{ route('admin.tags.search') }}" method="GET" class="mb-6">
+            <input
+                name="q"
+                type="text"
+                value="{{ request('q') }}"
+                placeholder="Szukaj tagi po nazwie"
+                class="rounded-xl bg-white/10 border border-white/10 px-5 py-4 w-full"
+            />
+        </form>
         <h1 class="text-2xl font-bold text-white text-center w-full">Wszystkie Tagi</h1>
 
         @if(session('success'))
@@ -10,6 +19,9 @@
 
         <a href="{{ route('admin.tags.create') }}" class="text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
             ➕ Dodaj
+        </a>
+        <a href="{{ route('admin.tags.index') }}" class="text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+            ➕ Powrot
         </a>
     </div>
 

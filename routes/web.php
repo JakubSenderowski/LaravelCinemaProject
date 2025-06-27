@@ -65,7 +65,6 @@ Route::delete('seanse-zarzadzanie/{id}', [AdminSeanseController::class, 'destroy
 //Zarządzanie Salami - Adminek
 Route::get('/sale-zarzadzanie', [AdminSaleController::class, 'index'])->name('admin.sale.index');
 Route::get('/sale-zarzadzanie-wyszukaj', [AdminSaleController::class, 'search'])->name('admin.sale.search');
-
 Route::get('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'create'])->name('admin.sale.create');
 Route::post('/sale-zarzadzanie-dodawanie', [AdminSaleController::class, 'store'])->name('admin.sale.store');
 Route::get('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'edit'])->name('admin.sale.editView');
@@ -73,6 +72,7 @@ Route::post('/sale-zarzadzanie-edycja/{id}', [AdminSaleController::class, 'updat
 Route::delete('sale-zarzadzanie/{id}', [AdminSaleController::class, 'destroy'])->name('admin.sale.destroy');
 //Zarządzanie Kategoriami - Adminek
 Route::get('/kategorie-zarzadzanie', [AdminKategorieController::class, 'index'])->name('admin.kategorie.index');
+Route::get('/kategorie-wyszukaj', [AdminKategorieController::class, 'search'])->name('admin.kategorie.search');
 Route::get('/kategorie-zarzadzanie-dodawanie', [AdminKategorieController::class, 'create'])->name('admin.kategorie.create');
 Route::post('/kategorie-zarzadzanie-dodawanie', [AdminKategorieController::class, 'store'])->name('admin.kategorie.store');
 Route::get('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::class, 'edit'])->name('admin.kategorie.editView');
@@ -80,6 +80,7 @@ Route::post('/kategorie-zarzadzanie-edycja/{id}', [AdminKategorieController::cla
 Route::delete('kategoria-zarzadzanie/{id}', [AdminKategorieController::class, 'destroy'])->name('admin.kategorie.destroy');
 //Zarządzanie Tagami - Adminek
 Route::get('/tagi-zarzadzanie', [AdminTagController::class, 'index'])->name('admin.tags.index');
+Route::get('/tagi-wyszukaj', [AdminTagController::class, 'search'])->name('admin.tags.search');
 Route::get('/tagi-zarzadzanie-dodawanie', [AdminTagController::class, 'create'])->name('admin.tags.create');
 Route::post('/tagi-zarzadzanie-dodawanie', [AdminTagController::class, 'store'])->name('admin.tags.store');
 Route::get('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'edit'])->name('admin.tags.editView');
