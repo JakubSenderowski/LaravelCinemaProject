@@ -1,63 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kino - Jakub Senderowski</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title>Kino – Jakub Senderowski</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-brown text-white font-sans">
-<div class="px-10">
-    <nav class="flex justify-between items-center py-4 border-b border-white/10">
-        <div>
-            <a href="/">
-                @auth
-                    @if(Auth::user()->is_admin)
-                        <p class="text-white text-sm">
-                            Witaj, {{ Auth::user()->name }} 👋 <span class="text-red-500 font-semibold">Administrator</span>
-                        </p>
-                    @else
-                        <p class="text-white text-sm">
-                            Witaj, {{ Auth::user()->name }} 👋
-                        </p>
-                    @endif
-                @endauth
+<body class="bg-cream text-brown font-sans">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-b-brown/20">
+        <div class="mb-4 md:mb-0">
+            <a href="/" class="text-xl font-semibold text-primary hover:text-accent transition-colors">
+                Kino
             </a>
+            @auth
+                <p class="text-brown text-sm mt-1">
+                    Witaj, <span class="font-medium">{{ Auth::user()->name }}</span>
+                    @if(Auth::user()->is_admin)
+                        <span class="ml-2 px-2 py-0.5 bg-red-500 text-white text-xs rounded">Administrator</span>
+                    @endif
+                </p>
+            @endauth
         </div>
-        <div class="space-x-6 font-bold">
+
+        <nav class="flex flex-wrap gap-6 font-medium">
             @auth
                 @if(Auth::user()->is_admin)
-            <a href="/dashboard"><span class="text-yellow-300 font-semibold"">Admin DashBoard</span></a>
+                    <a href="/dashboard" class="text-accent hover:underline">Admin Dashboard</a>
                 @endif
             @endauth
-            <a href="/rezerwacja-dokonana">Moje Rezerwacje</a>
-            <a href="/rezerwacja">Zarezerwuj</a>
-            <a href="#">FAQ</a>
-            <a href="#">Nasze kina</a>
-        </div>
-        <div class="space-x-6 font-bold">
+            <a href="/rezerwacja-dokonana" class="hover:text-primary">Moje Rezerwacje</a>
+            <a href="/rezerwacja" class="hover:text-primary">Zarezerwuj</a>
+            <a href="#" class="hover:text-primary">FAQ</a>
+            <a href="#" class="hover:text-primary">Nasze kina</a>
+        </nav>
+
+        <div class="flex gap-4 mt-4 md:mt-0">
             @guest
-            <a href="/login">Zaloguj</a>
-            <a href="/register">Zarejestruj</a>
+                <a href="/login" class="text-primary hover:text-accent">Zaloguj</a>
+                <a href="/register" class="text-primary hover:text-accent">Rejestruj</a>
             @endguest
             @auth
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="text-white">Wyloguj</button>
-                    </form>
-
-                @endauth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-primary hover:text-accent">Wyloguj</button>
+                </form>
+            @endauth
         </div>
+    </header>
 
-    </nav>
-    <main class="mt-10 max-w-[986px] mx-auto">
+    <main class="mt-10">
         {{$slot}}
     </main>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

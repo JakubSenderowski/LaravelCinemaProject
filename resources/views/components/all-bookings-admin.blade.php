@@ -1,42 +1,112 @@
 @props([
-    'id',
-    'user',
-    'tytul',
-    'seans',
-    'czas_trwania',
-    'data',
-    'liczba_miejsc',
-    'is_active',
+  'id',
+  'user',
+  'tytul',
+  'seans',
+  'czas_trwania',
+  'data',
+  'liczba_miejsc',
+  'is_active',
 ])
 
-<div class="bg-[#1f2937] rounded-2xl p-5 shadow-md border border-gray-700 text-white flex flex-col justify-between w-full max-w-[320px] mx-auto">
+<div
+    class="
+    bg-white
+    rounded-2xl
+    p-5
+    shadow-md
+    border
+    border-brown/20
+    text-brown
+    flex
+    flex-col
+    justify-between
+    w-full
+    max-w-[320px]
+    mx-auto
+  "
+>
     <div>
-        <h2 class="text-lg font-semibold text-indigo-300 mb-3">👤 Użytkownik: <span class="text-white">{{ $user }}</span></h2>
+        <h2 class="text-lg font-semibold text-primary mb-3">
+            👤 Użytkownik:
+            <span class="text-brown font-medium">{{ $user }}</span>
+        </h2>
 
         <ul class="text-sm space-y-1">
-            <li>🎬 <strong>Tytuł:</strong> {{ $tytul }}</li>
-            <li>⏱ <strong>Czas trwania:</strong> {{ $czas_trwania }} min</li>
-            <li>📅 <strong>Data seansu:</strong> {{ $data }}</li>
-            <li>🎟 <strong>Miejsca:</strong> {{ $liczba_miejsc }}</li>
             <li>
-                📌 <strong>Status:</strong>
+                🎬 <strong class="font-semibold">Tytuł:</strong>
+                <span class="text-brown">{{ $tytul }}</span>
+            </li>
+            <li>
+                ⏱ <strong class="font-semibold">Czas trwania:</strong>
+                <span class="text-brown">{{ $czas_trwania }} min</span>
+            </li>
+            <li>
+                📅 <strong class="font-semibold">Data seansu:</strong>
+                <span class="text-brown">{{ $data }}</span>
+            </li>
+            <li>
+                🎟️ <strong class="font-semibold">Miejsca:</strong>
+                <span class="text-brown">{{ $liczba_miejsc }}</span>
+            </li>
+            <li>
+                📌 <strong class="font-semibold">Status:</strong>
                 @if($is_active)
-                    <span class="text-green-400 font-semibold">✅ Aktywna</span>
+                    <span class="text-green font-semibold">✅ Aktywna</span>
                 @else
-                    <span class="text-red-400 font-semibold">❌ Anulowana</span>
+                    <span class="text-brown/60 font-semibold">❌ Anulowana</span>
                 @endif
             </li>
         </ul>
     </div>
 
     <div class="flex justify-center gap-2 mt-5 flex-wrap">
-        <a href="{{ route('admin.rezerwacje.editView', $id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+        <a
+            href="{{ route('admin.rezerwacje.editView', $id) }}"
+            class="
+        px-4
+        py-2
+        text-sm
+        font-medium
+        rounded-md
+        bg-primary
+        text-white
+        hover:bg-accent
+        transition-colors
+        flex
+        items-center
+        justify-center
+        gap-1
+      "
+        >
             ✏️ Edytuj
         </a>
-        <form action="{{ route('admin.rezerwacje.destroy', $id) }}" method="POST" class="inline-block">
+
+        <form
+            action="{{ route('admin.rezerwacje.destroy', $id) }}"
+            method="POST"
+            class="inline-block"
+        >
             @csrf
             @method('DELETE')
-            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+            <button
+                type="submit"
+                class="
+          px-4
+          py-2
+          text-sm
+          font-medium
+          rounded-md
+          bg-red-500
+          text-white
+          hover:bg-red-600
+          transition-colors
+          flex
+          items-center
+          justify-center
+          gap-1
+        "
+            >
                 🗑️ Usuń
             </button>
         </form>

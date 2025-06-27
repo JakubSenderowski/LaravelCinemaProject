@@ -1,7 +1,7 @@
 <x-default>
     <div class="mb-6">
         <div class="flex items-center gap-3 mb-4">
-            <h1 class="text-xl font-semibold text-white">
+            <h1 class="text-xl font-semibold text-brown">
                 Poniżej lista twoich rezerwacji! To miejsce, w którym możesz je edytować lub usunąć :)
             </h1>
         </div>
@@ -18,6 +18,7 @@
                     :liczba_miejsc="$rezerwacja->liczba_miejsc"
                     :id="$rezerwacja->id"
                     :rezerwacja="$rezerwacja"
+                    class="space-y-6"
                 />
             @endforeach
         </div>

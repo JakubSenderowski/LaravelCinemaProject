@@ -1,11 +1,44 @@
 @props(['src', 'tytul', 'kategoria', 'czastrwania'])
 
-<div class="w-36 h-auto rounded-xl overflow-hidden shadow-md hover:scale-105 transition duration-300 bg-white/5 text-white">
-    <img src="{{ $src }}" alt="{{ $tytul }}" class="w-full h-56 object-cover">
-    <div class="p-2">
-        <h3 class="text-sm font-semibold truncate">{{ $tytul }}</h3>
-        <p class="text-xs text-white/80">{{ $kategoria }}</p>
-        <p class="text-xs text-white/60">{{ $czastrwania }}</p>
+<div
+    class="
+    group
+    w-36
+    rounded-xl
+    overflow-hidden
+    shadow-md
+    transition-transform
+    duration-300
+    hover:scale-105
+    hover:shadow-lg
+    bg-white
+  "
+>
+    <img
+        src="{{ $src }}"
+        alt="{{ $tytul }}"
+        class="w-full h-56 object-cover"
+    />
+
+    <div class="p-2 bg-cream">
+        <h3
+            class="
+        text-sm
+        font-semibold
+        text-brown
+        truncate
+      "
+            title="{{ $tytul }}"
+        >
+            {{ $tytul }}
+        </h3>
+
+        <p class="text-xs text-primary mt-1">
+            {{ $kategoria }}
+        </p>
+
+        <p class="text-xs text-brown/60">
+            {{ $czastrwania }}
+        </p>
     </div>
 </div>
-
