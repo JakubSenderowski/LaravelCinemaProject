@@ -29,9 +29,11 @@ class AuthController extends Controller
     }
     public function registerPost(Request $request){
         $request->validate([
-           'name' => ['required'],
-           'email' => ['required', 'email'],
-           'password' => ['required'],
+            'name' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:6', 'regex:/^[A-Z]/', 'regex:/[!@#$%^&*]/'],
+        ], [
+            'password.regex' => 'Hasło musi zaczynać się wielką literą i zawierać znak specjalny (!@#$%^&*).',
         ]);
         $user = new User();
         $user->name = $request->name;

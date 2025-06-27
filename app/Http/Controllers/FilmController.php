@@ -23,5 +23,4 @@ class FilmController extends Controller
 
         return view('film.index', compact('filmy', 'filmyPoliczone', 'hotMovies'));
     }
-
 }

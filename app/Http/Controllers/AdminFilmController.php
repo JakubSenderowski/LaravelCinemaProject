@@ -111,4 +111,18 @@ class AdminFilmController extends Controller
 
         return redirect('/filmy-zarzadzanie')->with('success', 'Film został usunięty. :)');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $filmy = Film::with(['kategoria', 'tags'])
+            ->when($query, fn($q) => $q->where(fn($q2) =>
+            $q2->where('tytul', 'like', "%{$query}%")
+                ->orWhere('opis', 'like', "%{$query}%")
+            ))
+            ->get();
+
+        return view('admin.filmy.index', compact('filmy', 'query'));
+    }
+
 }

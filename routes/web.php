@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminSeanseController;
 use App\Http\Controllers\AdminSaleController;
 use App\Http\Controllers\AdminKategorieController;
 use App\Http\Controllers\AdminTagController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
 use App\Models\Film;
@@ -38,11 +39,13 @@ Route::get('/dashboard', [AdminController::class, "adminDashboard"])->name("dash
 
 //Zarządzanie Filmami - Adminek
 Route::get('/filmy-zarzadzanie', [AdminFilmController::class, "index"])->name("admin.filmy.index");
+Route::get('/filmy-zarzadzanie-wyszukaj', [AdminFilmController::class, 'search'])->name('admin.filmy.search');
 Route::get('/filmy-zarzadzanie-dodawanie', [AdminFilmController::class, 'create'])->name('admin.filmy.create');
 Route::post('/filmy-zarzadzanie-dodawanie', [AdminFilmController::class, 'store'])->name('admin.filmy.store');
 Route::get('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'edit'])->name('admin.filmy.editView');
 Route::post('/filmy-zarzadzanie-edycja/{id}', [AdminFilmController::class, 'update'])->name('admin.filmy.update');
 Route::delete('filmy-zarzadzanie/{id}', [AdminFilmController::class, 'destroy'])->name('admin.filmy.destroy');
+
 //Zarządzanie Rezerwacjami - Adminek
 Route::get('/rezerwacje-zarzadzanie', [AdminRezerwacjeController::class, "index"])->name("admin.rezerwacje.index");
 Route::get('/rezerwacje-zarzadzanie-dodawanie', [AdminRezerwacjeController::class, 'create'])->name('admin.rezerwacje.create');
@@ -79,3 +82,4 @@ Route::get('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'edit'])
 Route::post('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'update'])->name('admin.tags.update');
 Route::delete('tagi-zarzadzanie/{id}', [AdminTagController::class, 'destroy'])->name('admin.tags.destroy');
 
+Route::get('/search', SearchController::class)->name('filmy.search');

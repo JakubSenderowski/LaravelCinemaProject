@@ -2,9 +2,15 @@
     <div class="space-y-10">
         <section class="text-center pt-6">
             <h1 class="font-bold text-4xl mb-3">Wyszukaj film!</h1>
-            <x-form action="/search" class="mt-6">
-                <x-input> </x-input>
-            </x-form>
+            <form action="{{ route('filmy.search') }}" method="GET" class="mt-6">
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ request('q') }}"
+                    placeholder="Wpisz tytuł filmu..."
+                    class="rounded-xl bg-white/10 border border-white/10 px-5 py-4 w-full"
+                />
+            </form>
         </section>
 
         <x-section-heading>Top 3 - Najlepsze filmy tego miesiąca 🔥.</x-section-heading>
