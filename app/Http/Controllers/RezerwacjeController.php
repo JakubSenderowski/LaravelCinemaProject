@@ -11,9 +11,13 @@ class RezerwacjeController extends Controller
 
     public function show()
     {
-        $rezerwacje = Rezerwacje::with('seans', 'user')->get();
-        return view('rezerwacje.show', compact('rezerwacje'));
+        $seanse = Seanse::where('is_active', true)
+            ->with('film')
+            ->get();
+
+        return view('rezerwacje.show', compact('seanse'));
     }
+
     public function showRezerwacje()
     {
         $rezerwacje = Rezerwacje::with('seans.film')
@@ -26,62 +30,54 @@ class RezerwacjeController extends Controller
 
     public function create($seanses_id)
     {
-        $rezerwacja = Rezerwacje::with('seans', 'user')->findOrFail($seanses_id);
-        return view('rezerwacje.create', compact('rezerwacja'));
+        $seans = Seanse::with('film')->findOrFail($seanses_id);
+        return view('rezerwacje.create', compact('seans'));
+
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'film_id' => ['required', 'exists:films,id'],
             'seans_id' => ['required', 'exists:seanses,id'],
-            'sala_id' => ['required', 'exists:salas,id'],
-            'data' => ['required', 'date'],
-            'godzina' => ['required', 'date_format:H:i'],
             'liczba_miejsc' => ['required', 'integer', 'min:1'],
         ]);
+
         Rezerwacje::create([
             'user_id' => auth()->id(),
             'seans_id' => $validated['seans_id'],
             'liczba_miejsc' => $validated['liczba_miejsc'],
         ]);
 
-        return redirect('/')->with('success', 'Rezerwacja została zapisana - Popełniłeś błąd edytuj lub anuluj rezerwację w sekcji "Moje Rezerwacje" w Menu Głównym.!');
+        return redirect('/rezerwacja-dokonana')
+            ->with('success', 'Rezerwacja została zapisana – edytuj lub anuluj ją w sekcji "Moje Rezerwacje" w Menu Głównym!');
     }
+
     public function editView(int $id)
     {
         $rezerwacja = Rezerwacje::with('seans.film')->findOrFail($id);
-        $seanse = Seanse::with('film')->get();
+        $seanse = Seanse::with('film')
+            ->where('is_active', true)
+            ->get();
         return view('rezerwacje.editView', compact('rezerwacja', 'seanse'));
     }
 
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
-            'film_id' => ['required', 'exists:films,id'],
-            'data' => ['required', 'date'],
-            'godzina' => ['required', 'date_format:H:i'],
+            'seans_id' => ['required', 'exists:seanses,id'],
             'liczba_miejsc' => ['required', 'integer', 'min:1'],
         ]);
 
         $rezerwacja = Rezerwacje::findOrFail($id);
-        $seans = Seanse::where('film_id', $validated['film_id'])
-            ->where('data', $validated['data'])
-            ->where('godzina', $validated['godzina'])
-            ->first();
-
-        if (!$seans) {
-            return back()->withErrors([
-                'data' => 'Brak seansu z tym filmem, datą i godziną.'
-            ])->withInput();
-
-        }
 
         $rezerwacja->update([
-            'seans_id' => $seans->id,
+            'seans_id' => $validated['seans_id'],
             'liczba_miejsc' => $validated['liczba_miejsc'],
         ]);
 
-        return redirect('/rezerwacja-dokonana');
+        return redirect('/rezerwacja-dokonana')
+            ->with('success', 'Rezerwacja została zaktualizowana!');
     }
+
     public function delete(int $id)
     {
         $rezerwacja = Rezerwacje::findOrFail($id);
