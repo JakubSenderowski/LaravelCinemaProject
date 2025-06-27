@@ -48,6 +48,7 @@ Route::delete('filmy-zarzadzanie/{id}', [AdminFilmController::class, 'destroy'])
 
 //Zarządzanie Rezerwacjami - Adminek
 Route::get('/rezerwacje-zarzadzanie', [AdminRezerwacjeController::class, "index"])->name("admin.rezerwacje.index");
+Route::get('/rezerwacje-zarzadzanie-wyszukaj', [AdminRezerwacjeController::class, 'search'])->name('admin.rezerwacje.search');
 Route::get('/rezerwacje-zarzadzanie-dodawanie', [AdminRezerwacjeController::class, 'create'])->name('admin.rezerwacje.create');
 Route::post('/rezerwacje-zarzadzanie-dodawanie', [AdminRezerwacjeController::class, 'store'])->name('admin.rezerwacje.store');
 Route::get('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::class, 'edit'])->name('admin.rezerwacje.editView');
@@ -55,6 +56,7 @@ Route::post('/rezerwacje-zarzadzanie-edycja/{id}', [AdminRezerwacjeController::c
 Route::delete('rezerwacje-zarzadzanie/{id}', [AdminRezerwacjeController::class, 'destroy'])->name('admin.rezerwacje.destroy');
 //Zarządzanie Seansami - Adminek
 Route::get('/seanse-zarzadzanie', [AdminSeanseController::class, 'index'])->name('admin.seanse.index');
+Route::get('/seanse-zarzadzanie-wyszukaj', [AdminSeanseController::class, 'search'])->name('admin.seanse.search');
 Route::get('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'create'])->name('admin.seanse.create');
 Route::post('/seanse-zarzadzanie-dodawanie', [AdminSeanseController::class, 'store'])->name('admin.seanse.store');
 Route::get('/seanse-zarzadzanie-edycja/{id}', [AdminSeanseController::class, 'edit'])->name('admin.seanse.editView');

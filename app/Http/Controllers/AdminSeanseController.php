@@ -97,4 +97,16 @@ class AdminSeanseController extends Controller
         $seans->save();
         return redirect('/seanse-zarzadzanie')->with('success', 'Seans został usunięty. :)');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $seanse = Seanse::with('film')
+            ->when($query, fn($q) => $q->whereHas('film', fn($f) =>
+            $f->where('tytul', 'like', "%{$query}%")
+            ))
+            ->get();
+        return view('admin.seanse.index', compact('seanse', 'query'));
+    }
+
 }

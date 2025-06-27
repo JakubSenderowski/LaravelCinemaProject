@@ -15,6 +15,9 @@
             <a href="{{ route('admin.filmy.create') }}" class="ml-auto px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded">
                 ➕ Dodaj Film
             </a>
+            <a href="{{ route('admin.filmy.index') }}" class=" text-white px-3 py-1.5 rounded-md text-sm font-medium flex items-center justify-center gap-1">
+                ➕ Powrót
+            </a>
         </div>
 
         @if(session('success'))

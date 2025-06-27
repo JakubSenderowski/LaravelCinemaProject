@@ -99,4 +99,18 @@ class AdminRezerwacjeController extends Controller
         $rezerwacja->save();
         return redirect('/rezerwacje-zarzadzanie')->with('success', 'Rezerwacja została usunięta. :)');
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+
+        $rezerwacje = Rezerwacje::with(['user', 'seans.film'])
+            ->when($query, fn($q) => $q->whereHas('user', fn($u) =>
+            $u->where('name', 'like', "%{$query}%")
+            ))
+            ->get();
+
+        return view('admin.rezerwacje.index', compact('rezerwacje', 'query'));
+    }
+
 }
