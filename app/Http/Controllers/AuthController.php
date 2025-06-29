@@ -29,7 +29,7 @@ class AuthController extends Controller
     }
     public function registerPost(Request $request){
         $request->validate([
-            'name' => ['required'],
+            'name' => ['required', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:6', 'regex:/^[A-Z]/', 'regex:/[!@#$%^&*]/'],
         ], [

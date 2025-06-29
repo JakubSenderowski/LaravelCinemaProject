@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminSeanseController;
 use App\Http\Controllers\AdminSaleController;
 use App\Http\Controllers\AdminKategorieController;
 use App\Http\Controllers\AdminTagController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\RezerwacjeController;
@@ -93,8 +94,18 @@ Route::get('/dashboard', [AdminController::class, "adminDashboard"])->name("dash
     Route::get('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'edit'])->name('admin.tags.editView');
     Route::post('/tagi-zarzadzanie-edycja/{id}', [AdminTagController::class, 'update'])->name('admin.tags.update');
     Route::delete('tagi-zarzadzanie/{id}', [AdminTagController::class, 'destroy'])->name('admin.tags.destroy');
+//Zarządzanie Userami - Adminek
+    Route::get('/uzytkownicy-zarzadzanie', [AdminUserController::class, 'index'])
+        ->name('admin.users.index');
+    Route::get('/uzytkownicy-zarzadzanie-wyszukaj', [AdminUserController::class, 'search'])
+        ->name('admin.users.search');
+    Route::get('/uzytkownicy-zarzadzanie-edycja/{id}', [AdminUserController::class, 'edit'])
+        ->name('admin.users.editView');
+    Route::post('/uzytkownicy-zarzadzanie-edycja/{id}', [AdminUserController::class, 'update'])
+        ->name('admin.users.update');
+    Route::delete('/uzytkownicy-zarzadzanie/{id}', [AdminUserController::class, 'destroy'])
+        ->name('admin.users.destroy');
 });
-
 
 
 Route::get('/search', SearchController::class)->name('filmy.search');

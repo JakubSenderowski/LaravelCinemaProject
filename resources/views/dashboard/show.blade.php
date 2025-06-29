@@ -51,7 +51,13 @@
                     Zarządzaj
                 </a>
             </div>
-
+            <div class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-brown transition-transform duration-300 hover:scale-105 w-full max-w-xs">
+                <img src="/storage/icons/uzytkownicy-dashboard.png" alt="Uzytkownicy" class="w-24 h-24 object-contain mb-4">
+                <h2 class="text-lg font-semibold mb-2">Użytkownicy</h2>
+                <a href="/uzytkownicy-zarzadzanie" class="px-4 py-2 text-sm font-medium rounded-md bg-primary text-white hover:bg-accent transition-colors">
+                    Zarządzaj
+                </a>
+            </div>
         </div>
     </div>
 </x-default>
