@@ -60,7 +60,7 @@ class AdminUserController extends Controller
             'name'      => ['required', 'string', 'max:255'],
             'email'     => ['required', 'email', "unique:users,email,{$id}"],
             'is_active' => ['required', 'boolean'],
-            'password'  => ['nullable', 'min:6', 'confirmed'],
+            'password'  => ['nullable', 'min:6', 'regex:/^[A-Z]/', 'regex:/[!@#$%^&*]/'],
             'is_admin' => ['required','boolean'],
         ]);
 

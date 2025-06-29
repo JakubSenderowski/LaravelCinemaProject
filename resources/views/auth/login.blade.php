@@ -1,42 +1,59 @@
 <x-default>
     <main class="mt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    @if(session()->has("Sukces"))
-                        <div class="alert alert-success">
-                            {{session()->get("Sukces")}}
-                        </div>
-                    @endif
-                    @if(session()->has("Blad"))
-                        <div class="alert alert-danger">
-                            {{session()->get("Blad")}}
-                        </div>
-                    @endif
-                    <div class="card">
-                        <h3 class="card-header text-center">Logowanie</h3>
-                        <div class="card-body">
-                            <form method="POST" action="{{route("login.post")}}">
-                                @csrf
-                                <div class="form-group mb-3">
-                                    <input type="text" placeholder="Email" id="email" class="form-control" name="email" required autofocus>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="password" placeholder="Password" id="password" class="form-control" name="password" required>
-                                    @if ($errors->has('password'))
-                                        <span class="text-danger">{{ $errors->first('password') }}</span>
-                                    @endif
-                                </div>
+        <div class="max-w-md mx-auto py-10 px-4 text-brown">
+            @if(session()->has("Sukces"))
+                <div class="bg-green px-4 py-2 rounded text-white mb-4 text-center">
+                    {{ session()->get("Sukces") }}
+                </div>
+            @endif
+            @if(session()->has("Blad"))
+                <div class="bg-red-500 px-4 py-2 rounded text-white mb-4 text-center">
+                    {{ session()->get("Blad") }}
+                </div>
+            @endif
 
-                                <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Zaloguj</button>
-                                </div>
-                            </form>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <h3 class="bg-primary text-white text-center py-4 font-semibold">Logowanie</h3>
+                <div class="p-6">
+                    <form method="POST" action="{{ route('login.post') }}" class="space-y-4">
+                        @csrf
+
+                        <div>
+                            <input
+                                type="text"
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                required
+                                autofocus
+                                class="w-full p-2 rounded bg-brown/10 border border-brown/20 text-brown placeholder-brown/50 focus:bg-white focus:border-primary transition-colors"
+                            >
+                            @if ($errors->has('email'))
+                                <span class="text-red-400 text-sm">{{ $errors->first('email') }}</span>
+                            @endif
                         </div>
-                    </div>
+
+                        <div>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder="Hasło"
+                                required
+                                class="w-full p-2 rounded bg-brown/10 border border-brown/20 text-brown placeholder-brown/50 focus:bg-white focus:border-primary transition-colors"
+                            >
+                            @if ($errors->has('password'))
+                                <span class="text-red-400 text-sm">{{ $errors->first('password') }}</span>
+                            @endif
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="w-full px-4 py-2 bg-primary hover:bg-accent text-white font-semibold rounded transition-colors"
+                        >
+                            Zaloguj
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

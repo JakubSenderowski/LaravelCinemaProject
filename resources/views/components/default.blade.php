@@ -34,8 +34,7 @@
             @endauth
             <a href="/rezerwacja-dokonana" class="hover:text-primary">Moje Rezerwacje</a>
             <a href="/rezerwacja" class="hover:text-primary">Zarezerwuj</a>
-            <a href="#" class="hover:text-primary">FAQ</a>
-            <a href="#" class="hover:text-primary">Nasze kina</a>
+            <a href="/faq" class="hover:text-primary">FAQ</a>
         </nav>
 
         <div class="flex gap-4 mt-4 md:mt-0">

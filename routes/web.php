@@ -17,6 +17,7 @@ use App\Models\Film;
 use App\Models\User;
 
 Route::get('/', [FilmController::class, 'index']);
+Route::view('/faq', 'faq.index')->name('faq.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/rezerwacja', [RezerwacjeController::class, 'show']);
